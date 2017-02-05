@@ -1,10 +1,8 @@
 # Simple linear regression
-
-import numpy as np
 import pandas as pd
-import matplotlib
+import matplotlib.pyplot as plt
 from sklearn.cross_validation import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
 
 # importing the dataset
 
@@ -14,10 +12,27 @@ y = dataset.iloc[:, 1].values  # dependent variable (Salary)
 
 # Splitting the data into the training and test set
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1.0/3, random_state=0)
 
-# Feature Scaling
+# Fitting simple linear regression to the training set
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
 
-sc_X = StandardScaler()
-X_train = sc_X.fit_transform(X_train)
-X_test = sc_X.transform(X_test)
+# Predicting the test set results
+y_pred = regressor.predict(X_test)
+
+# Visualizing the training set results
+plt.scatter(X_train, y_train, color='red')
+plt.plot(X_train, regressor.predict(X_train), color='blue')
+plt.title('Salary vs Experience (Training Set Results)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary in $')
+plt.show()
+
+# Visualizing the test set results
+plt.scatter(X_test, y_test, color='red')
+plt.plot(X_train, regressor.predict(X_train), color='blue')
+plt.title('Salary vs Experience (Test Set Results)')
+plt.xlabel('Years of experience')
+plt.ylabel('Salary in $')
+plt.show()
