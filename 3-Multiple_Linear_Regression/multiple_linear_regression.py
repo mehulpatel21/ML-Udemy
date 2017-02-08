@@ -11,7 +11,7 @@ import statsmodels.formula.api as sm
 
 # Importing the dataset
 
-dataset = pd.read_csv('/Users/Leo/PycharmProjects/ML-Udemy/3-Multiple_Linear_Regression/50_Startups.csv')
+dataset = pd.read_csv('C:\\Users\\Mehul\\PycharmProjects\\ML-Udemy\\3-Multiple_Linear_Regression\\50_Startups.csv')
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, 4].values
 
@@ -37,3 +37,22 @@ y_pred = regressor.predict(X_test)
 
 # Building the Optimal model using Backward Elimination
 X = np.append(arr=np.ones((50, 1)).astype(int), values=X, axis=1)
+X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 1, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
