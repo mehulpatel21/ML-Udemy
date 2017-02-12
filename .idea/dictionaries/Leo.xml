@@ -2,6 +2,7 @@
   <dictionary name="Leo">
     <words>
       <w>dataset</w>
+      <w>inversed</w>
       <w>labelencoder</w>
       <w>onehotencoder</w>
       <w>pred</w>
